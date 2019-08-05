@@ -4,6 +4,7 @@ module.exports = {
         const website = 'https://orteil.dashnet.org/cookieclicker/';
         const cookieButton = '#bigCookie';
         const upgrade = '.product.unlocked.enabled';
+        const grandmaUpdated = '#productOwned1.title.owned';
         
         browser
             .url(website)
@@ -13,9 +14,9 @@ module.exports = {
                 intervalTime = setInterval(function() {
                     browser.waitForElementVisible(cookieButton)
                     browser.click(cookieButton)
-                    browser.getText('#productOwned1.title.owned' , function (result) {
+                    browser.getText(grandmaUpdated, function (result) {
                         if(result.value == '1') {
-                            console.error('Grandma has been acquired!', timeout);
+                            console.error('Grandma has been acquired!');
                             browser.end();
                         }
                     });
@@ -23,7 +24,7 @@ module.exports = {
                         browser.click(upgrade)
                     })
                 done();
-            },100)
+            },200)
         })
     } 
 }
